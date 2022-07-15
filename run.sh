@@ -3,15 +3,58 @@
 set -e
 
 # keep track of the last executed command
-trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
+#trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
 # echo an error message before exiting
-trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
+#trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
 
 
+## functions
+
+
+help(){
+
+	# Display Help
+	echo "Syntax: run.sh dpn dps [-h]"
+	echo 
+	echo "options : "
+	echo "dpn	lokasi data penempatan csv"
+	echo "dps	lokasi data peserta csv"
+	echo "h 	print help"	
+
+}
+
+
+## setting global variables
+
+data_penempatan=""
+data_peserta=""
+number_params=0
 
 ## input 
 ## input 1 : data penempatan
 ## input 2 : data peserta
+
+while getopts ":h" option; do
+	case $option in
+		h) # display Help
+			help
+			exit;;
+		\?) # invalid options
+			help
+			exit;;
+	esac
+done
+
+if [ $# -eq 2 ] 
+then
+	number_params=$#
+	data_penempatan=$1
+	data_peserta=$2
+
+else
+	help
+	exit 1
+fi
 
 ## preparasi data
 ## 1. buat folder temporary
