@@ -3,7 +3,7 @@
 # pass all arguments to the main script
 database=$(mktemp -p /tmp seleksi.XXXXXX)
 
-./main.sh $database "$@"
+./main $database "$@"
 EXITCODE=$?
 
 if [[ $EXITCODE -eq 1 ]]

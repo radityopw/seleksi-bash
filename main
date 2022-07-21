@@ -9,7 +9,7 @@ cd "$(dirname "$0")"
 help(){
 
 	# Display Help
-	echo "Syntax: run.sh dpn dps [-h]"
+	echo "Syntax: run dpn dps [-h]"
 	echo 
 	echo "options : "
 	echo "dpn	lokasi data penempatan csv"
