@@ -88,11 +88,12 @@ while getopts ":h" option; do
 	esac
 done
 
-if [ $# -eq 2 ] 
+if [ $# -eq 3 ] 
 then
 	number_params=$#
-	data_penempatan=$1
-	data_peserta=$2
+	database=$1
+	data_penempatan=$2
+	data_peserta=$3
 
 else
 	help
@@ -102,7 +103,6 @@ fi
 ## preparasi data
 ## 1. buat temporary file
 ## 2. copy database.db ke point 1 -> database_aktif.db
-database=$(mktemp -p /tmp seleksi.XXXXXX)
 cp database.db $database
 
 ## cek data 

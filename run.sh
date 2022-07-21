@@ -1,15 +1,17 @@
 #!/bin/bash
 
 # pass all arguments to the main script
-./main.sh "$@"
+database=$(mktemp -p /tmp seleksi.XXXXXX)
+
+./main.sh $database "$@"
 EXITCODE=$?
 
 if [[ $EXITCODE -eq 1 ]]
 then
-	jml_file=$(( $(ls /tmp/seleksi.* 2> /dev/null | wc -l) + 0  ))
+	jml_file=$(( $(ls $database 2> /dev/null | wc -l) + 0  ))
 	if [[ $jml_file -gt 0 ]]
 	then
-		rm /tmp/seleksi.*
+		rm $database
 	fi
 
 fi
